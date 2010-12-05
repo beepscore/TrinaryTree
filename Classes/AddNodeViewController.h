@@ -19,6 +19,7 @@
     id<AddNodeViewControllerDelegate> delegate;
     
 }
+
 @property (nonatomic, assign) id<AddNodeViewControllerDelegate> delegate;
 
 @property (nonatomic, retain) IBOutlet UITextField *nodeContentTextField;
