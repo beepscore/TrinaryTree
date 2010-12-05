@@ -13,4 +13,10 @@
 
 }
 
+@property (nonatomic, retain) NSNumber *nodeContent;
+@property (nonatomic, retain) Node *parentNode;
+@property (nonatomic, retain) Node *leftNode;
+@property (nonatomic, retain) Node *middleNode;
+@property (nonatomic, retain) Node *rightNode;
+
 @end

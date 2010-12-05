@@ -11,6 +11,9 @@
 
 @implementation Node
 
+@synthesize nodeContent;
+@synthesize parentNode, leftNode, middleNode, rightNode;
+
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -29,7 +32,14 @@
 }
 */
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [nodeContent release];
+    [parentNode release];
+    [leftNode release];
+    [middleNode release];
+    [rightNode release];
+    
     [super dealloc];
 }
 
