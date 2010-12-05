@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class TrinaryTreeViewController;
-
 @interface TrinaryTreeAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
-    TrinaryTreeViewController *viewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet TrinaryTreeViewController *viewController;
+@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
 @end
 

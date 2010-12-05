@@ -10,8 +10,6 @@
 
 @implementation TrinaryTreeViewController
 
-
-
 /*
 // The designated initializer. Override to perform setup that is required before the view is loaded.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -30,12 +28,19 @@
 */
 
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Nodes", @"");
+    
+    // Set up the add button.
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
+                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                  target:self
+                                  action:@selector(presentAddNodeViewController)];
+    self.navigationItem.rightBarButtonItem = addButton;
+    [addButton release];
 }
-*/
 
 
 /*
@@ -62,5 +67,41 @@
 - (void)dealloc {
     [super dealloc];
 }
+
+#pragma mark -
+#pragma mark Add a new node
+
+- (void)presentAddNodeViewController
+{    
+    // Create the modal view controller
+    // Reference http://useyourloaf.com/blog/2010/5/3/ipad-modal-view-controllers.html
+    AddNodeViewController *addNodeViewController = [[AddNodeViewController alloc] initWithNibName:nil bundle:nil];
+    
+    // We are responsible for dismissing the modal view.
+    // Set ourselves as delegate, to get callback.    
+    addNodeViewController.delegate = self;
+    
+    
+    // Create a Navigation controller to get a navigation bar to hold the done button  
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:addNodeViewController];
+    
+    // show the navigation controller modally    
+    [self presentModalViewController:navController animated:YES];
+    
+    [navController release];
+    
+    [addNodeViewController release];
+}
+
+#pragma mark -
+#pragma mark AddNodeViewControllerDelegate method
+- (void)addNodeViewControllerDidRequestDismissView
+{
+    // Dismiss the modal view controller    
+    [self dismissModalViewControllerAnimated:YES];    
+}
+
+
 
 @end
