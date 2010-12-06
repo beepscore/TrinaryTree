@@ -7,13 +7,18 @@
 //
 
 #import "TrinaryTreeViewController.h"
+#import "TrinaryTree.h"
 
 @implementation TrinaryTreeViewController
 
+@synthesize trinaryTree;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
+
     self.title = NSLocalizedString(@"Nodes", @"");
     
     // Set up the add button.
@@ -39,7 +44,10 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [trinaryTree release];
+
     [super dealloc];
 }
 
@@ -56,6 +64,7 @@
     // Set ourselves as delegate, to get callback.    
     addNodeViewController.delegate = self;
     
+    addNodeViewController.trinaryTree = self.trinaryTree;
     
     // Create a Navigation controller to get a navigation bar to hold the done button  
     UINavigationController *navController = [[UINavigationController alloc]

@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 // import AddNodeViewController.h to see the AddNodeViewControllerDelegate protocol declaration
 #import "AddNodeViewController.h"
+@class TrinaryTree;
+
 
 @interface TrinaryTreeViewController : UIViewController 
 <AddNodeViewControllerDelegate> 
 {
 
 }
+@property (nonatomic, retain) TrinaryTree *trinaryTree;
+
 
 @end
 

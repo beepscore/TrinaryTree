@@ -8,11 +8,12 @@
 
 #import "AddNodeViewController.h"
 #import "Node.h"
+#import "TrinaryTree.h"
 
 @interface AddNodeViewController ()
 - (void)dismissView;
 - (void)handleTappedDone;
-- (void)insertNewNode:(NSNumber *)aNodeContent;
+- (void)insertNodeWithContent:(NSNumber *)aNodeContent;
 @end
 
 @implementation AddNodeViewController
@@ -20,7 +21,7 @@
 @synthesize delegate;
 @synthesize nodeContentTextField;
 @synthesize nodeContent;
-
+@synthesize trinaryTree;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -82,6 +83,7 @@
 {     
     [nodeContentTextField release];
     [nodeContent release];
+    [trinaryTree release];
     
     [super dealloc];
 }
@@ -110,7 +112,7 @@
         NSNumber *cleanedNodeNumber = [formatter numberFromString:self.nodeContentTextField.text];
         [formatter release];
         
-        [self insertNewNode:cleanedNodeNumber];
+        [self insertNodeWithContent:cleanedNodeNumber];
         [self dismissView];
     }
 }
@@ -118,13 +120,17 @@
 
 #pragma mark -
 #pragma mark Add a new object
-- (void)insertNewNode:(NSNumber *)aNodeContent
+- (void)insertNodeWithContent:(NSNumber *)aNodeContent
 {    
-    //Node *newNode = [[Node alloc] init];
-    //newNode.nodeContent = aNodeContent;
-    // TODO: FIXME memory leak return autoreleased node to trinarytree?
-    // add node to a model of trinary tree?  Node needs to walk tree to find place and set it's parent.
-    
+    Node *newNode = [[[Node alloc] init] autorelease];
+    newNode.nodeContent = aNodeContent;
+
+    // I tried putting the trinaryTree in app delegate, but now
+    // have it as a property of TrinaryTreeViewController and AddNodeViewController.
+    // ref http://stackoverflow.com/questions/855456/compiler-warning-not-found-in-protocols-when-using-uiapplication-sharedapp    
+    //[[[[UIApplication sharedApplication] delegate] trinaryTree] insertNode:newNode];  
+
+    [self.trinaryTree insertNode:newNode];  
 }
 
 @end

@@ -14,7 +14,6 @@
 @synthesize window;
 @synthesize navigationController;
 
-
 #pragma mark -
 #pragma mark Application lifecycle
 
@@ -78,7 +77,8 @@
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     [navigationController release];
     [window release];
     [super dealloc];

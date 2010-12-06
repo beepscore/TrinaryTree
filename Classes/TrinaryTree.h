@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSMutableSet *nodes;
 @property (nonatomic, retain) Node *rootNode;
 
+- (void)insertNode:(Node *)aNode;
 
+- (void)listNodes;
 
 @end
