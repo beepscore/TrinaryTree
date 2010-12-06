@@ -89,9 +89,8 @@
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
-- (void)textFieldDidEndEditing:aTextField
+- (void)textFieldDidEndEditing:(UITextField *)aTextField
 {
-    // why does this execute only some of the times after user taps "Done" button?
     NSLog(@"%@", @"in textFieldDidEndEditing");
 }
 
@@ -121,8 +120,8 @@
 #pragma mark Add a new object
 - (void)insertNewNode:(NSNumber *)aNodeContent
 {    
-    Node *newNode = [[Node alloc] init];
-    newNode.nodeContent = aNodeContent;
+    //Node *newNode = [[Node alloc] init];
+    //newNode.nodeContent = aNodeContent;
     // TODO: FIXME memory leak return autoreleased node to trinarytree?
     // add node to a model of trinary tree?  Node needs to walk tree to find place and set it's parent.
     
