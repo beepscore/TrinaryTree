@@ -121,10 +121,7 @@
 #pragma mark Add a new object
 - (void)insertNewNode:(NSNumber *)aNodeContent
 {    
-    // Create a new node.    
-    CGRect nodeFrame = CGRectMake(10, 10, 30, 30);
-    
-    Node *newNode = [[Node alloc] initWithFrame:nodeFrame];
+    Node *newNode = [[Node alloc] init];
     newNode.nodeContent = aNodeContent;
     // TODO: FIXME memory leak return autoreleased node to trinarytree?
     // add node to a model of trinary tree?  Node needs to walk tree to find place and set it's parent.

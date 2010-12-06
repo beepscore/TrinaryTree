@@ -6,13 +6,12 @@
 //  Copyright 2010 Beepscore LLC. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 
-@interface Node : UIView {
+@interface Node : NSObject {
 
 }
-
 @property (nonatomic, retain) NSNumber *nodeContent;
 @property (nonatomic, retain) Node *parentNode;
 @property (nonatomic, retain) Node *leftNode;
