@@ -7,8 +7,20 @@
 //
 
 #import "TrinaryTree.h"
+#import "Node.h";
 
 
 @implementation TrinaryTree
+
+@synthesize nodes, rootNode;
+
+
+- (void)dealloc
+{
+    [nodes release];
+    [rootNode release];
+   
+    [super dealloc];
+}
 
 @end

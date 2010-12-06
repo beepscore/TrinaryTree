@@ -7,10 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class Node;
 
 @interface TrinaryTree : NSObject {
 
 }
+@property (nonatomic, retain) NSMutableSet *nodes;
+@property (nonatomic, retain) Node *rootNode;
+
+
 
 @end
