@@ -45,6 +45,8 @@
         while (YES)
         {                    
             // we are at currentNode, and we will place aNode farther along the tree
+            NSLog(@"currentNode %@", currentNode.nodeContent);
+
             // set aNode.parentNode to currentNode before we change currentNode
             aNode.parentNode = currentNode;
             
@@ -70,7 +72,7 @@
                 }                 
             }
             
-            if (aNode.nodeContent.intValue == currentNode.nodeContent.intValue)
+            else if (aNode.nodeContent.intValue == currentNode.nodeContent.intValue)
             {
                 // go middle
                 if (currentNode.middleNode)
@@ -86,7 +88,7 @@
                 }                    
             }
             
-            if (aNode.nodeContent.intValue > currentNode.nodeContent.intValue)
+            else if (aNode.nodeContent.intValue > currentNode.nodeContent.intValue)
             {
                 // go right
                 if (currentNode.rightNode)
@@ -113,6 +115,7 @@
     for (Node* aNode in [self nodes]) {
         NSLog(@"%i, ", aNode.nodeContent.intValue);
     }
+    NSLog(@"Root node = %i, ", self.rootNode.nodeContent.intValue);
 }
 
 @end
