@@ -18,7 +18,8 @@
     [super viewDidLoad];
     
     self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
-
+    self.trinaryTree.nodes = [[[NSMutableSet alloc] initWithCapacity:1] autorelease];
+    
     self.title = NSLocalizedString(@"Nodes", @"");
     
     // Set up the add button.

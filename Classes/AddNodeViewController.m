@@ -93,7 +93,7 @@
 #pragma mark UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)aTextField
 {
-    NSLog(@"%@", @"in textFieldDidEndEditing");
+    // NSLog(@"%@", @"in textFieldDidEndEditing");
 }
 
 

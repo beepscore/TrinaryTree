@@ -15,7 +15,6 @@
 @synthesize parentNode, leftNode, middleNode, rightNode;
 
 
-
 - (void)dealloc
 {
     [nodeContent release];
