@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 @class Node;
 
-@interface TrinaryTree : NSObject {
+@protocol TrinaryTreeDelegate <NSObject>
+- (void)trinaryTreeDidInsertNode:(Node *)aNode;
+@end
 
+@interface TrinaryTree : NSObject
+{
+    id<TrinaryTreeDelegate> delegate;
 }
+@property (nonatomic, assign) id<TrinaryTreeDelegate> delegate;
+
 @property (nonatomic, retain) NSMutableSet *nodes;
 @property (nonatomic, retain) Node *rootNode;
 

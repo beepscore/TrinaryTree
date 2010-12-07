@@ -7,10 +7,11 @@
 //
 
 #import "NodeView.h"
-
+#import "Node.h"
 
 @implementation NodeView;
 
+@synthesize node;
 
 - (id)initWithFrame:(CGRect)frame {
     
@@ -21,18 +22,19 @@
     return self;
 }
 
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code.
+    // Drawing code
 }
 */
 
+
 - (void)dealloc
 {
-
-    
+    [node release];    
     
     [super dealloc];
 }

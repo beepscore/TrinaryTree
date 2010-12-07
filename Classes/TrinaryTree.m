@@ -12,6 +12,7 @@
 
 @implementation TrinaryTree
 
+@synthesize delegate;
 @synthesize nodes, rootNode;
 
 
@@ -35,6 +36,7 @@
         // don't set aNode.parentNode
         [[self nodes] addObject:aNode];
         NSLog(@"added %@ as rootNode", aNode.nodeContent);
+        [self.delegate trinaryTreeDidInsertNode:aNode];
         
     } else {
         // trinaryTree has a rootNode. Start traversing tree at the rootNode.
@@ -67,6 +69,7 @@
                     [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as leftNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
+                    [self.delegate trinaryTreeDidInsertNode:aNode];
                     // exit loop
                     return;                        
                 }                 
@@ -84,6 +87,7 @@
                     [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as rightNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
+                    [self.delegate trinaryTreeDidInsertNode:aNode];
                     return;
                 }                
             }
@@ -100,6 +104,7 @@
                     [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as middleNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
+                    [self.delegate trinaryTreeDidInsertNode:aNode];
                     return;                        
                 }                    
             }            

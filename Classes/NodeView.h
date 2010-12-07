@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Node;
 
-
-@interface NodeView : UIView {
+@interface NodeView : UIButton {
 
 }
+@property (nonatomic, retain) Node *node;
 
 
 @end

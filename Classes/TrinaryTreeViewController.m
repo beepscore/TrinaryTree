@@ -7,7 +7,8 @@
 //
 
 #import "TrinaryTreeViewController.h"
-#import "TrinaryTree.h"
+#import "Node.h"
+#import "NodeView.h"
 
 @implementation TrinaryTreeViewController
 
@@ -18,6 +19,7 @@
     [super viewDidLoad];
     
     self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
+    self.trinaryTree.delegate = self;
     self.trinaryTree.nodes = [[[NSMutableSet alloc] initWithCapacity:1] autorelease];
     
     self.title = NSLocalizedString(@"Nodes", @"");
@@ -85,8 +87,30 @@
 {
     // Dismiss the modal view controller    
     [self dismissModalViewControllerAnimated:YES];
-    
-    //CGRect nodeFrame = CGRectMake(10, 10, 30, 30);
 }
+
+#pragma mark -
+#pragma mark TrinaryTreeDelegate method
+- (void)trinaryTreeDidInsertNode:(Node *)aNode
+{
+//    CGRect nodeFrame = CGRectMake(self.view.bounds.size.width / 2.0f, 10, 30, 30);
+//    NodeView *tempNodeView = [[NodeView alloc] initWithFrame:nodeFrame];
+//    [self.view addSubview:tempNodeView];
+//    [tempNodeView release];
+    
+    
+    NodeView *tempNodeView = [NodeView buttonWithType:UIButtonTypeRoundedRect];
+    [tempNodeView addTarget:self 
+               action:nil //@selector(aMethod:)
+     forControlEvents:UIControlEventTouchDown];
+    
+    NSString *nodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
+    [tempNodeView setTitle:nodeButtonTitle forState:UIControlStateNormal];
+    tempNodeView.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
+    [self.view addSubview:tempNodeView];
+
+    
+}
+
 
 @end
