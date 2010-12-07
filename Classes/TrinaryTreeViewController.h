@@ -19,6 +19,7 @@
 
 }
 @property (nonatomic, retain) TrinaryTree *trinaryTree;
+- (void)nodeButtonTapped;
 
 
 @end

@@ -10,6 +10,10 @@
 #import "Node.h"
 #import "NodeButton.h"
 
+@interface TrinaryTreeViewController ()
+@end
+
+
 @implementation TrinaryTreeViewController
 
 @synthesize trinaryTree;
@@ -89,19 +93,62 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+- (void)nodeButtonTapped
+{
+    // Handle nodeButton tapped    
+}
+
+
 #pragma mark -
 #pragma mark TrinaryTreeDelegate method
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {
-    NodeButton *tempNodeButton = [NodeButton buttonWithType:UIButtonTypeRoundedRect];
-    [tempNodeButton addTarget:self 
-               action:nil //@selector(aMethod:)
-     forControlEvents:UIControlEventTouchDown];
+    // must use UIButtonTypeCustom in order to get access to sublclass NodeButton properties
+    //    NodeButton *aNodeButton = [NodeButton buttonWithType:UIButtonTypeRoundedRect];
+    // ref http://stackoverflow.com/questions/2920045/subclassing-uibutton-but-cant-access-my-properties
+    NodeButton *aNodeButton = [NodeButton buttonWithType:UIButtonTypeCustom];
+
+    [aNodeButton addTarget:self 
+                    action:@selector(nodeButtonTapped)
+          forControlEvents:UIControlEventTouchDown];
     
-    NSString *nodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
-    [tempNodeButton setTitle:nodeButtonTitle forState:UIControlStateNormal];
-    tempNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
-    [self.view addSubview:tempNodeButton];    
+    aNodeButton.node = aNode;
+    
+    NSString *aNodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
+    [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
+    
+    float buttonHeight = 30.0;
+    float buttonWidth = 30.0;
+    float horizontalOffset = 40;
+    float verticalOffset = 50.0;
+    
+    if (!aNodeButton.node.parentNode)
+    {
+        // node has no parent, so put aNodeButton at root
+        //        aNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, buttonWidth, buttonHeight);
+        aNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
+        [self.view addSubview:aNodeButton];
+    } else {
+        // add aNodeButton as subview of parent NodeButton on correct branch
+        // don't have a simple way to get a reference to the parent NodeButton??
+        // for now, add aNodeButton as subview of self.view
+        
+        if (aNode == aNode.parentNode.leftNode) 
+        {
+            horizontalOffset *= -1;
+        } else if (aNode == aNode.parentNode.middleNode)
+        {
+            horizontalOffset = 0;
+        }
+        
+        aNodeButton.frame = CGRectMake((self.view.bounds.size.width / 2.0f) + horizontalOffset,
+                                       verticalOffset, buttonWidth, buttonHeight);
+
+        //[aNodeButton.node.parentNode.view addSubview:aNodeButton];
+        [self.view addSubview:aNodeButton];
+    }
+    
 }
 
 
