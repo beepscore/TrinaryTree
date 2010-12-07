@@ -11,7 +11,7 @@
 #import "AddNodeViewController.h"
 #import "TrinaryTree.h"
 @class Node;
-@class NodeView;
+@class NodeButton;
 
 @interface TrinaryTreeViewController : UIViewController 
 <AddNodeViewControllerDelegate, TrinaryTreeDelegate> 

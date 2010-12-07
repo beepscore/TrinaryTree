@@ -8,7 +8,7 @@
 
 #import "TrinaryTreeViewController.h"
 #import "Node.h"
-#import "NodeView.h"
+#import "NodeButton.h"
 
 @implementation TrinaryTreeViewController
 
@@ -93,23 +93,15 @@
 #pragma mark TrinaryTreeDelegate method
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {
-//    CGRect nodeFrame = CGRectMake(self.view.bounds.size.width / 2.0f, 10, 30, 30);
-//    NodeView *tempNodeView = [[NodeView alloc] initWithFrame:nodeFrame];
-//    [self.view addSubview:tempNodeView];
-//    [tempNodeView release];
-    
-    
-    NodeView *tempNodeView = [NodeView buttonWithType:UIButtonTypeRoundedRect];
-    [tempNodeView addTarget:self 
+    NodeButton *tempNodeButton = [NodeButton buttonWithType:UIButtonTypeRoundedRect];
+    [tempNodeButton addTarget:self 
                action:nil //@selector(aMethod:)
      forControlEvents:UIControlEventTouchDown];
     
     NSString *nodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
-    [tempNodeView setTitle:nodeButtonTitle forState:UIControlStateNormal];
-    tempNodeView.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
-    [self.view addSubview:tempNodeView];
-
-    
+    [tempNodeButton setTitle:nodeButtonTitle forState:UIControlStateNormal];
+    tempNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
+    [self.view addSubview:tempNodeButton];    
 }
 
 

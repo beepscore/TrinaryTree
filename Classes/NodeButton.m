@@ -1,15 +1,15 @@
 //
-//  NodeView.m
+//  NodeButton.m
 //  TrinaryTree
 //
 //  Created by Steve Baker on 12/5/10.
 //  Copyright 2010 Beepscore LLC. All rights reserved.
 //
 
-#import "NodeView.h"
+#import "NodeButton.h"
 #import "Node.h"
 
-@implementation NodeView;
+@implementation NodeButton;
 
 @synthesize node;
 

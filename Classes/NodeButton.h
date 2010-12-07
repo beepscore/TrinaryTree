@@ -1,5 +1,5 @@
 //
-//  NodeView.h
+//  NodeButton.h
 //  TrinaryTree
 //
 //  Created by Steve Baker on 12/5/10.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class Node;
 
-@interface NodeView : UIButton {
+@interface NodeButton : UIButton {
 
 }
 @property (nonatomic, retain) Node *node;
