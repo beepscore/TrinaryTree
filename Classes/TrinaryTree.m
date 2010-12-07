@@ -71,23 +71,7 @@
                     return;                        
                 }                 
             }
-            
-            else if (aNode.nodeContent.intValue == currentNode.nodeContent.intValue)
-            {
-                // go middle
-                if (currentNode.middleNode)
-                {
-                    currentNode = currentNode.middleNode;
-                } else {
-                    // middle branch is empty, put aNode there
-                    currentNode.middleNode = aNode;
-                    [[self nodes] addObject:aNode];
-                    NSLog(@"added %@ as middleNode of %@", 
-                          aNode.nodeContent, aNode.parentNode.nodeContent);
-                    return;                        
-                }                    
-            }
-            
+
             else if (aNode.nodeContent.intValue > currentNode.nodeContent.intValue)
             {
                 // go right
@@ -103,6 +87,22 @@
                     return;
                 }                
             }
+            
+            else // (aNode.nodeContent.intValue == currentNode.nodeContent.intValue)
+            {
+                // go middle
+                if (currentNode.middleNode)
+                {
+                    currentNode = currentNode.middleNode;
+                } else {
+                    // middle branch is empty, put aNode there
+                    currentNode.middleNode = aNode;
+                    [[self nodes] addObject:aNode];
+                    NSLog(@"added %@ as middleNode of %@", 
+                          aNode.nodeContent, aNode.parentNode.nodeContent);
+                    return;                        
+                }                    
+            }            
         }
     }
 }
