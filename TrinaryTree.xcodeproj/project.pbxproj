@@ -15,7 +15,6 @@
 		2899E5220DE3E06400AC0155 /* TrinaryTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* TrinaryTreeViewController.xib */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* TrinaryTreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* TrinaryTreeViewController.m */; };
-		DE7B4A8512AC209C00134DDF /* NodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE7B4A8412AC209C00134DDF /* NodeButton.m */; };
 		DE8A42F712AC182A00BB7261 /* README in Resources */ = {isa = PBXBuildFile; fileRef = DE8A42F612AC182A00BB7261 /* README */; };
 		DEB1C65712AC2B0000662679 /* AddNodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB1C65512AC2B0000662679 /* AddNodeViewController.m */; };
 		DEBC06C912AC68E500FC8C9D /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBC06C812AC68E500FC8C9D /* Node.m */; };
@@ -38,8 +37,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* TrinaryTree_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrinaryTree_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* TrinaryTree-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TrinaryTree-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		DE7B4A8312AC209C00134DDF /* NodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeButton.h; sourceTree = "<group>"; };
-		DE7B4A8412AC209C00134DDF /* NodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeButton.m; sourceTree = "<group>"; };
 		DE8A42F612AC182A00BB7261 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		DEB1C65412AC2B0000662679 /* AddNodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNodeViewController.h; sourceTree = "<group>"; };
 		DEB1C65512AC2B0000662679 /* AddNodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNodeViewController.m; sourceTree = "<group>"; };
@@ -72,8 +69,6 @@
 				DEB1C65512AC2B0000662679 /* AddNodeViewController.m */,
 				DEBC06C712AC68E500FC8C9D /* Node.h */,
 				DEBC06C812AC68E500FC8C9D /* Node.m */,
-				DE7B4A8312AC209C00134DDF /* NodeButton.h */,
-				DE7B4A8412AC209C00134DDF /* NodeButton.m */,
 				DEE04D1A12AC9F3100B946C8 /* TrinaryTree.h */,
 				DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */,
 				1D3623240D0F684500981E51 /* TrinaryTreeAppDelegate.h */,
@@ -203,7 +198,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* TrinaryTreeAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* TrinaryTreeViewController.m in Sources */,
-				DE7B4A8512AC209C00134DDF /* NodeButton.m in Sources */,
 				DEB1C65712AC2B0000662679 /* AddNodeViewController.m in Sources */,
 				DEBC06C912AC68E500FC8C9D /* Node.m in Sources */,
 				DEE04D1C12AC9F3100B946C8 /* TrinaryTree.m in Sources */,

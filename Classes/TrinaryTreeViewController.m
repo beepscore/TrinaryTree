@@ -8,9 +8,11 @@
 
 #import "TrinaryTreeViewController.h"
 #import "Node.h"
-#import "NodeButton.h"
 
 @interface TrinaryTreeViewController ()
+- (void)nodeButtonTapped;
+- (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
+- (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
 @end
 
 
@@ -54,7 +56,7 @@
 - (void)dealloc
 {
     [trinaryTree release];
-
+    
     [super dealloc];
 }
 
@@ -103,53 +105,88 @@
 #pragma mark -
 #pragma mark TrinaryTreeDelegate method
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
-{
-    // must use UIButtonTypeCustom in order to get access to sublclass NodeButton properties
-    //    NodeButton *aNodeButton = [NodeButton buttonWithType:UIButtonTypeRoundedRect];
-    // ref http://stackoverflow.com/questions/2920045/subclassing-uibutton-but-cant-access-my-properties
-    NodeButton *aNodeButton = [NodeButton buttonWithType:UIButtonTypeCustom];
+{         
+    CGPoint currentPoint = CGPointMake(self.view.bounds.size.width / 2.0f, 10.0);
+    NSValue *currentPointValue = [NSValue valueWithCGPoint:currentPoint];
+    [self showTree:self.trinaryTree
+          fromNode:self.trinaryTree.rootNode 
+      atPointValue:currentPointValue];
+}
 
+
+- (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue
+{
+    UIButton *aNodeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
     [aNodeButton addTarget:self 
                     action:@selector(nodeButtonTapped)
           forControlEvents:UIControlEventTouchDown];
-    
-    aNodeButton.node = aNode;
     
     NSString *aNodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
     [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
     
     float buttonHeight = 30.0;
     float buttonWidth = 30.0;
-    float horizontalOffset = 40;
-    float verticalOffset = 50.0;
     
-    if (!aNodeButton.node.parentNode)
-    {
-        // node has no parent, so put aNodeButton at root
-        //        aNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, buttonWidth, buttonHeight);
-        aNodeButton.frame = CGRectMake(self.view.bounds.size.width / 2.0f, 10.0, 30.0, 30.0);
-        [self.view addSubview:aNodeButton];
-    } else {
-        // add aNodeButton as subview of parent NodeButton on correct branch
-        // don't have a simple way to get a reference to the parent NodeButton??
-        // for now, add aNodeButton as subview of self.view
-        
-        if (aNode == aNode.parentNode.leftNode) 
-        {
-            horizontalOffset *= -1;
-        } else if (aNode == aNode.parentNode.middleNode)
-        {
-            horizontalOffset = 0;
-        }
-        
-        aNodeButton.frame = CGRectMake((self.view.bounds.size.width / 2.0f) + horizontalOffset,
-                                       verticalOffset, buttonWidth, buttonHeight);
-
-        //[aNodeButton.node.parentNode.view addSubview:aNodeButton];
-        [self.view addSubview:aNodeButton];
-    }
-    
+    aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x,
+                                   aPointValue.CGPointValue.y,
+                                   buttonWidth,
+                                   buttonHeight);
+    [self.view addSubview:aNodeButton];    
 }
 
+
+- (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue
+{
+    float horizontalOffset = 40.0;
+    float verticalOffset = 50.0;
+    
+    // Start traversing tree at startNode.
+    // currentNode keeps track of our position
+    Node *currentNode = startNode;
+    
+    if (currentNode == startNode)
+    {
+        [self showNode:currentNode atPointValue:aPointValue];
+    }
+    
+    // if the currentNode has children, keep walking down the tree
+    if (currentNode.leftNode || currentNode.middleNode || currentNode.rightNode)
+    {                    
+        // choose branch direction        
+        if (currentNode.leftNode)
+        {
+            // show left
+            CGPoint leftChildPoint = CGPointMake(aPointValue.CGPointValue.x - horizontalOffset,
+                                                 aPointValue.CGPointValue.y + verticalOffset);
+            NSValue *leftChildPointValue = [NSValue valueWithCGPoint:leftChildPoint];
+            [self showTree:self.trinaryTree
+                  fromNode:currentNode.leftNode 
+              atPointValue:leftChildPointValue];            
+        }
+        
+        if (currentNode.middleNode)
+        {
+            // show middle
+            CGPoint middleChildPoint = CGPointMake(aPointValue.CGPointValue.x,
+                                                 aPointValue.CGPointValue.y + verticalOffset);
+            NSValue *middleChildPointValue = [NSValue valueWithCGPoint:middleChildPoint];
+            [self showTree:self.trinaryTree
+                  fromNode:currentNode.middleNode 
+              atPointValue:middleChildPointValue];            
+        }                         
+        
+        if (currentNode.rightNode)
+        {
+            // show right
+            CGPoint rightChildPoint = CGPointMake(aPointValue.CGPointValue.x + horizontalOffset,
+                                                 aPointValue.CGPointValue.y + verticalOffset);
+            NSValue *rightChildPointValue = [NSValue valueWithCGPoint:rightChildPoint];
+            [self showTree:self.trinaryTree
+                  fromNode:currentNode.rightNode 
+              atPointValue:rightChildPointValue];            
+        }                 
+    }
+}
 
 @end

@@ -11,7 +11,6 @@
 #import "AddNodeViewController.h"
 #import "TrinaryTree.h"
 @class Node;
-@class NodeButton;
 
 @interface TrinaryTreeViewController : UIViewController 
 <AddNodeViewControllerDelegate, TrinaryTreeDelegate> 
@@ -19,7 +18,6 @@
 
 }
 @property (nonatomic, retain) TrinaryTree *trinaryTree;
-- (void)nodeButtonTapped;
 
 
 @end
