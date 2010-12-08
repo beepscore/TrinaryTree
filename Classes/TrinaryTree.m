@@ -25,6 +25,19 @@
 }
 
 
+#pragma mark -
+#pragma mark Methods to manage tree
+- (void)listNodes
+{
+    NSLog(@"Nodes: ");
+    
+    for (Node* aNode in [self nodes]) {
+        NSLog(@"%i, ", aNode.nodeContent.intValue);
+    }
+    NSLog(@"Root node = %i, ", self.rootNode.nodeContent.intValue);
+}
+
+
 - (void)insertNode:(Node *)aNode
 {
     if (!self.rootNode)
@@ -110,14 +123,62 @@
 }
 
 
-- (void)listNodes
+- (void)deleteNode:(Node *)aNode
 {
-    NSLog(@"Nodes: ");
-    
-    for (Node* aNode in [self nodes]) {
-        NSLog(@"%i, ", aNode.nodeContent.intValue);
+    // disconnect aNode parent's link to aNode
+    if (aNode == aNode.parentNode.leftNode)
+    {
+        aNode.parentNode.leftNode = nil;
     }
-    NSLog(@"Root node = %i, ", self.rootNode.nodeContent.intValue);
+    else if (aNode == aNode.parentNode.middleNode)
+    {
+        aNode.parentNode.middleNode = nil;
+    }
+    else if (aNode == aNode.parentNode.rightNode)
+    {
+        aNode.parentNode.rightNode = nil;
+    }
+
+    // Keep references so we don't lose them when we delete aNode
+    // Note they may be nil. in Objective C, ok to send a message to nil
+    Node *leftOrphanNode = aNode.leftNode;
+    Node *middleOrphanNode = aNode.middleNode;
+    Node *rightOrphanNode = aNode.rightNode;
+    
+    // disconnect aNode children's link to their ex-parent aNode
+    leftOrphanNode.parentNode = nil;
+    middleOrphanNode.parentNode = nil;
+    rightOrphanNode.parentNode = nil;
+    
+    // make sure rootNode is not retaining aNode
+    if (aNode == self.rootNode)
+    {
+        self.rootNode = nil;
+    }    
+    
+    // if we want to send delegate message with node, need to do it before delete
+    [self.delegate trinaryTreeWillDeleteNode:aNode];
+    
+    // free memory
+    [aNode release];
+    // make sure we don't try to use a bad reference
+    aNode = nil;
+    
+    // Re-connect orphans to tree
+    // The order of re-connection may affect the result, and the order is arbitrary
+    if (leftOrphanNode)
+    {
+        [self insertNode:leftOrphanNode];
+    }
+    if (middleOrphanNode)
+    {
+        [self insertNode:middleOrphanNode];
+    }
+    if (rightOrphanNode)
+    {
+        [self insertNode:rightOrphanNode];
+    }
 }
+
 
 @end

@@ -11,6 +11,7 @@
 
 @protocol TrinaryTreeDelegate <NSObject>
 - (void)trinaryTreeDidInsertNode:(Node *)aNode;
+- (void)trinaryTreeWillDeleteNode:(Node *)aNode;
 @end
 
 @interface TrinaryTree : NSObject
@@ -22,8 +23,8 @@
 @property (nonatomic, retain) NSMutableSet *nodes;
 @property (nonatomic, retain) Node *rootNode;
 
-- (void)insertNode:(Node *)aNode;
-
 - (void)listNodes;
+- (void)insertNode:(Node *)aNode;
+- (void)deleteNode:(Node *)aNode;
 
 @end

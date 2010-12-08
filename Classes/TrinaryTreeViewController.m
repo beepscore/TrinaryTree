@@ -12,6 +12,7 @@
 
 @interface TrinaryTreeViewController ()
 - (void)nodeButtonTapped:(id)sender;
+- (void)cleanViewAndShowTree;
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
 @end
@@ -120,14 +121,29 @@
     NSInteger senderIDTag = [sender tag];
     NSNumber *senderTagNumber = [NSNumber numberWithInt:senderIDTag];
     Node *nodeForButton = [self.buttonNodeDictionary objectForKey:senderTagNumber];
-    NSLog(@"Hi from node %i", nodeForButton.nodeContent.intValue);
+    NSLog(@"Deleting node %i", nodeForButton.nodeContent.intValue);
+    [self.trinaryTree deleteNode:nodeForButton];
 }
 
 
 #pragma mark -
-#pragma mark TrinaryTreeDelegate method
+#pragma mark TrinaryTreeDelegate methods
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {         
+    [self cleanViewAndShowTree];
+}
+
+
+- (void)trinaryTreeWillDeleteNode:(Node *)aNode
+{  
+    [self cleanViewAndShowTree];
+}
+
+
+#pragma mark -
+#pragma mark View methods
+- (void)cleanViewAndShowTree
+{
     // remove old subviews
     // ref http://stackoverflow.com/questions/2156015/iphone-remove-all-subviews
     NSArray *viewsToRemove = [self.view subviews];
@@ -140,7 +156,7 @@
     NSValue *currentPointValue = [NSValue valueWithCGPoint:currentPoint];
     [self showTree:self.trinaryTree
           fromNode:self.trinaryTree.rootNode 
-      atPointValue:currentPointValue];
+      atPointValue:currentPointValue];    
 }
 
 
