@@ -144,11 +144,8 @@
     // Start traversing tree at startNode.
     // currentNode keeps track of our position
     Node *currentNode = startNode;
-    
-    if (currentNode == startNode)
-    {
-        [self showNode:currentNode atPointValue:aPointValue];
-    }
+    [self showNode:currentNode atPointValue:aPointValue];
+
     
     // if the currentNode has children, keep walking down the tree
     if (currentNode.leftNode || currentNode.middleNode || currentNode.rightNode)
