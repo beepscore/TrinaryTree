@@ -8,6 +8,7 @@
 
 #import "TrinaryTreeViewController.h"
 #import "Node.h"
+#import <math.h>
 
 @interface TrinaryTreeViewController ()
 - (void)nodeButtonTapped;
@@ -125,7 +126,7 @@
     }
     
     // call showTree
-    CGPoint currentPoint = CGPointMake(self.view.bounds.size.width / 2.0f, 10.0);
+    CGPoint currentPoint = CGPointMake(self.view.bounds.size.width / 2.0f, 25.0);
     NSValue *currentPointValue = [NSValue valueWithCGPoint:currentPoint];
     [self showTree:self.trinaryTree
           fromNode:self.trinaryTree.rootNode 
@@ -145,10 +146,10 @@
     [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
     
     float buttonHeight = 30.0;
-    float buttonWidth = 20.0;    
+    float buttonWidth = 30.0;    
     
     aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x - (buttonWidth / 2.0),
-                                   aPointValue.CGPointValue.y,
+                                   aPointValue.CGPointValue.y - (buttonHeight / 2.0),
                                    buttonWidth,
                                    buttonHeight);
     [self.view addSubview:aNodeButton];    
@@ -171,7 +172,7 @@
         // choose branch direction        
         if (currentNode.leftNode)
         {            
-            double leftChildX = aPointValue.CGPointValue.x - (4000.0/childY);            
+            double leftChildX = aPointValue.CGPointValue.x - (36000.0/pow(childY,1.4));            
             CGPoint leftChildPoint = CGPointMake(leftChildX, childY);
             NSValue *leftChildPointValue = [NSValue valueWithCGPoint:leftChildPoint];
             
@@ -196,7 +197,7 @@
         
         if (currentNode.rightNode)
         {
-            double rightChildX = aPointValue.CGPointValue.x + (4000.0/childY);            
+            double rightChildX = aPointValue.CGPointValue.x + (36000.0/pow(childY,1.4));            
             CGPoint rightChildPoint = CGPointMake(rightChildX, childY);
             NSValue *rightChildPointValue = [NSValue valueWithCGPoint:rightChildPoint];
             
