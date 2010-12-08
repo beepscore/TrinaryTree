@@ -9,9 +9,9 @@
 #import "TrinaryTreeViewController.h"
 #import "Node.h"
 #import <math.h>
+#import "NodeButton.h"
 
 @interface TrinaryTreeViewController ()
-- (void)nodeButtonTapped;
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
 @end
@@ -19,7 +19,7 @@
 
 @implementation TrinaryTreeViewController
 
-@synthesize trinaryTree;
+@synthesize trinaryTree, nodeButtons;
 
 - (void)viewDidLoad
 {
@@ -57,6 +57,21 @@
 - (void)dealloc
 {
     [trinaryTree release];
+   
+    ///////////////////////////////////////////////////
+    // NOTE: we will release each nodeButton two times
+    // First to balance the retain when instantiated in showNode
+    // Second release is implicit.  When we release nodeButtons set, 
+    // it will release each nodebutton it was retaining in its collection.
+    
+    // release nodeButtons instantiated and retained in showNode 
+    for (NodeButton *aNodeButton in self.nodeButtons) {
+        [aNodeButton release];
+    }
+    
+    // release nodeButtons set and objects in its collection
+    [nodeButtons release];
+    ///////////////////////////////////////////////////
     
     [super dealloc];
 }
@@ -108,12 +123,6 @@
 }
 
 
-- (void)nodeButtonTapped
-{
-    // Handle nodeButton tapped    
-}
-
-
 #pragma mark -
 #pragma mark TrinaryTreeDelegate method
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
@@ -133,26 +142,19 @@
       atPointValue:currentPointValue];
 }
 
-
+#pragma mark -
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue
 {
-    UIButton *aNodeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [aNodeButton addTarget:self 
-                    action:@selector(nodeButtonTapped)
-          forControlEvents:UIControlEventTouchDown];
-    
-    NSString *aNodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
-    [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
-    
-    float buttonHeight = 30.0;
-    float buttonWidth = 30.0;    
-    
-    aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x - (buttonWidth / 2.0),
-                                   aPointValue.CGPointValue.y - (buttonHeight / 2.0),
-                                   buttonWidth,
-                                   buttonHeight);
-    [self.view addSubview:aNodeButton];    
+    NodeButton *aNodeButton = [[NodeButton alloc] initWithNode:aNode atPointValue:aPointValue];
+
+    [self.view addSubview:aNodeButton.button];
+
+    // NOTE: Clang warns potential leak of aNodeButton.
+    // We can't release aNodeButton yet, need it to respond to button tap.
+    // Put aNodeButton in nodeButtons set, so we can release it in dealloc
+    [self.nodeButtons addObject:aNodeButton];
+    // We should release aNodeButton.button, because the view is retaining it as a subview
+    [aNodeButton.button release];
 }
 
 

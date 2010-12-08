@@ -21,6 +21,7 @@
 		DEE04D1C12AC9F3100B946C8 /* TrinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */; };
 		DEE93B7C12AC2E1200379D72 /* AddNodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE93B7B12AC2E1200379D72 /* AddNodeViewController.xib */; };
 		DEE93BBD12AC316700379D72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE93BBC12AC316700379D72 /* Localizable.strings */; };
+		DEF12B6312AFFFEF00DD9156 /* NodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF12B6212AFFFEF00DD9156 /* NodeButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrinaryTree.m; sourceTree = "<group>"; };
 		DEE93B7B12AC2E1200379D72 /* AddNodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNodeViewController.xib; sourceTree = "<group>"; };
 		DEE93BBA12AC313900379D72 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DEF12B6112AFFFEF00DD9156 /* NodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeButton.h; sourceTree = "<group>"; };
+		DEF12B6212AFFFEF00DD9156 /* NodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,8 @@
 				DEB1C65512AC2B0000662679 /* AddNodeViewController.m */,
 				DEBC06C712AC68E500FC8C9D /* Node.h */,
 				DEBC06C812AC68E500FC8C9D /* Node.m */,
+				DEF12B6112AFFFEF00DD9156 /* NodeButton.h */,
+				DEF12B6212AFFFEF00DD9156 /* NodeButton.m */,
 				DEE04D1A12AC9F3100B946C8 /* TrinaryTree.h */,
 				DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */,
 				1D3623240D0F684500981E51 /* TrinaryTreeAppDelegate.h */,
@@ -201,6 +206,7 @@
 				DEB1C65712AC2B0000662679 /* AddNodeViewController.m in Sources */,
 				DEBC06C912AC68E500FC8C9D /* Node.m in Sources */,
 				DEE04D1C12AC9F3100B946C8 /* TrinaryTree.m in Sources */,
+				DEF12B6312AFFFEF00DD9156 /* NodeButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
