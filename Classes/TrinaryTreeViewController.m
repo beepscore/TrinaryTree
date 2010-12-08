@@ -11,7 +11,7 @@
 #import <math.h>
 
 @interface TrinaryTreeViewController ()
-- (void)nodeButtonTapped;
+- (void)nodeButtonTapped:(id)sender;
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
 @end
@@ -19,7 +19,7 @@
 
 @implementation TrinaryTreeViewController
 
-@synthesize trinaryTree;
+@synthesize trinaryTree, buttonNodeDictionary;
 
 - (void)viewDidLoad
 {
@@ -38,6 +38,10 @@
                                   action:@selector(presentAddNodeViewController)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
+    
+    self.buttonNodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
+    
+    buttonTagIndex = 0;
 }
 
 
@@ -57,6 +61,7 @@
 - (void)dealloc
 {
     [trinaryTree release];
+    [buttonNodeDictionary release];
     
     [super dealloc];
 }
@@ -108,9 +113,14 @@
 }
 
 
-- (void)nodeButtonTapped
+- (void)nodeButtonTapped:(id)sender
 {
-    // Handle nodeButton tapped    
+    // Handle nodeButton tapped
+    // ref http://stackoverflow.com/questions/450222/passing-a-parameter-in-setaction
+    NSInteger senderIDTag = [sender tag];
+    NSNumber *senderTagNumber = [NSNumber numberWithInt:senderIDTag];
+    Node *nodeForButton = [self.buttonNodeDictionary objectForKey:senderTagNumber];
+    NSLog(@"Hi from node %i", nodeForButton.nodeContent.intValue);
 }
 
 
@@ -138,9 +148,16 @@
 {
     UIButton *aNodeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
+    // Tag the button to identify it to selector
+    aNodeButton.tag = buttonTagIndex;
+    NSNumber *aNodeButtonTagNumber = [NSNumber numberWithInt:aNodeButton.tag];
+    // Associated the button tag with the node, so the selector can get the node
+    [self.buttonNodeDictionary setObject:aNode forKey:aNodeButtonTagNumber];
+    buttonTagIndex ++;
+    
     [aNodeButton addTarget:self 
-                    action:@selector(nodeButtonTapped)
-          forControlEvents:UIControlEventTouchDown];
+                    action:@selector(nodeButtonTapped:)
+          forControlEvents:UIControlEventTouchUpInside];
     
     NSString *aNodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
     [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
