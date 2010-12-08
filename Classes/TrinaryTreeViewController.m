@@ -106,6 +106,14 @@
 #pragma mark TrinaryTreeDelegate method
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {         
+    // remove old subviews
+    // ref http://stackoverflow.com/questions/2156015/iphone-remove-all-subviews
+    NSArray *viewsToRemove = [self.view subviews];
+    for (UIView *aView in viewsToRemove) {
+        [aView removeFromSuperview];
+    }
+    
+    // call showTree
     CGPoint currentPoint = CGPointMake(self.view.bounds.size.width / 2.0f, 10.0);
     NSValue *currentPointValue = [NSValue valueWithCGPoint:currentPoint];
     [self showTree:self.trinaryTree
@@ -126,9 +134,9 @@
     [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
     
     float buttonHeight = 30.0;
-    float buttonWidth = 30.0;
+    float buttonWidth = 20.0;    
     
-    aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x,
+    aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x - (buttonWidth / 2.0),
                                    aPointValue.CGPointValue.y,
                                    buttonWidth,
                                    buttonHeight);
@@ -138,51 +146,54 @@
 
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue
 {
-    float horizontalOffset = 40.0;
-    float verticalOffset = 50.0;
-    
     // Start traversing tree at startNode.
     // currentNode keeps track of our position
     Node *currentNode = startNode;
     [self showNode:currentNode atPointValue:aPointValue];
-
     
     // if the currentNode has children, keep walking down the tree
     if (currentNode.leftNode || currentNode.middleNode || currentNode.rightNode)
-    {                    
+    {    
+        double verticalOffset = 50.0;
+        double childY = aPointValue.CGPointValue.y + verticalOffset;
+        
         // choose branch direction        
         if (currentNode.leftNode)
-        {
-            // show left
-            CGPoint leftChildPoint = CGPointMake(aPointValue.CGPointValue.x - horizontalOffset,
-                                                 aPointValue.CGPointValue.y + verticalOffset);
+        {            
+            double leftChildX = aPointValue.CGPointValue.x - (4000.0/childY);            
+            CGPoint leftChildPoint = CGPointMake(leftChildX, childY);
             NSValue *leftChildPointValue = [NSValue valueWithCGPoint:leftChildPoint];
+            
+            // recursive call
             [self showTree:self.trinaryTree
                   fromNode:currentNode.leftNode 
               atPointValue:leftChildPointValue];            
         }
         
+        // use "if", not "else if", we want to look at all 3 branches!
         if (currentNode.middleNode)
-        {
-            // show middle
-            CGPoint middleChildPoint = CGPointMake(aPointValue.CGPointValue.x,
-                                                 aPointValue.CGPointValue.y + verticalOffset);
+        {            
+            double middleChildX = aPointValue.CGPointValue.x;
+            CGPoint middleChildPoint = CGPointMake(middleChildX, childY);
             NSValue *middleChildPointValue = [NSValue valueWithCGPoint:middleChildPoint];
+            
+            // recursive call
             [self showTree:self.trinaryTree
                   fromNode:currentNode.middleNode 
               atPointValue:middleChildPointValue];            
-        }                         
+        } 
         
         if (currentNode.rightNode)
         {
-            // show right
-            CGPoint rightChildPoint = CGPointMake(aPointValue.CGPointValue.x + horizontalOffset,
-                                                 aPointValue.CGPointValue.y + verticalOffset);
+            double rightChildX = aPointValue.CGPointValue.x + (4000.0/childY);            
+            CGPoint rightChildPoint = CGPointMake(rightChildX, childY);
             NSValue *rightChildPointValue = [NSValue valueWithCGPoint:rightChildPoint];
+            
+            // recursive call
             [self showTree:self.trinaryTree
                   fromNode:currentNode.rightNode 
               atPointValue:rightChildPointValue];            
-        }                 
+        }
     }
 }
 

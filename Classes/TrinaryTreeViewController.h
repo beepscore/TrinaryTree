@@ -19,6 +19,5 @@
 }
 @property (nonatomic, retain) TrinaryTree *trinaryTree;
 
-
 @end
 

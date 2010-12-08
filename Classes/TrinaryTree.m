@@ -27,8 +27,6 @@
 
 - (void)insertNode:(Node *)aNode
 {
-    [self listNodes];
-
     if (!self.rootNode)
     {
         // rootNode is empty, put aNode at root
@@ -47,7 +45,6 @@
         while (YES)
         {                    
             // we are at currentNode, and we will place aNode farther along the tree
-            NSLog(@"currentNode %@", currentNode.nodeContent);
 
             // set aNode.parentNode to currentNode before we change currentNode
             aNode.parentNode = currentNode;
