@@ -10,11 +10,14 @@
 #import "Node.h"
 #import <math.h>
 
+const double kVerticalOffset = 50.0f;
+
 @interface TrinaryTreeViewController ()
 - (void)nodeButtonTapped:(id)sender;
 - (void)cleanViewAndShowTree;
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
+- (double)horizontalOffsetForY:(float)yCoordinate;
 @end
 
 
@@ -118,7 +121,7 @@
 - (void)nodeButtonTapped:(id)sender
 {
     NSLog(@"in TrinaryTreeViewController nodeButtonTapped:");
-
+    
     // Handle nodeButton tapped
     // ref http://stackoverflow.com/questions/450222/passing-a-parameter-in-setaction
     NSInteger senderIDTag = [sender tag];
@@ -164,10 +167,10 @@
 #pragma mark View methods
 - (void)cleanViewAndShowTree
 {
-
+    
     NSLog(@"in TrinaryTreeViewController cleanViewAndShowTree");
     [self.trinaryTree listNodes];
-
+    
     // empty buttonNodeDictionary, we will be adding new labels 
     [self.buttonNodeDictionary removeAllObjects];
     
@@ -178,9 +181,9 @@
     {
         [aView removeFromSuperview];
     }
-        
+    
     // call showTree starting from rootNode
-    CGPoint currentPoint = CGPointMake(self.view.bounds.size.width / 2.0f, 25.0);
+    CGPoint currentPoint = CGPointMake((self.view.bounds.size.width / 2.0f), kVerticalOffset);
     NSValue *currentPointValue = [NSValue valueWithCGPoint:currentPoint];
     
     [self showTree:self.trinaryTree
@@ -240,13 +243,12 @@
     // if the currentNode has children, keep walking down the tree
     if (currentNode.leftNode || currentNode.middleNode || currentNode.rightNode)
     {    
-        double verticalOffset = 50.0;
-        double childY = aPointValue.CGPointValue.y + verticalOffset;
+        double childY = aPointValue.CGPointValue.y + kVerticalOffset;
         
         // choose branch direction        
         if (currentNode.leftNode)
         {            
-            double leftChildX = aPointValue.CGPointValue.x - (36000.0/pow(childY,1.4));            
+            double leftChildX = (aPointValue.CGPointValue.x - [self horizontalOffsetForY:childY]);            
             CGPoint leftChildPoint = CGPointMake(leftChildX, childY);
             NSValue *leftChildPointValue = [NSValue valueWithCGPoint:leftChildPoint];
             
@@ -271,7 +273,7 @@
         
         if (currentNode.rightNode)
         {
-            double rightChildX = aPointValue.CGPointValue.x + (36000.0/pow(childY,1.4));            
+            double rightChildX = (aPointValue.CGPointValue.x + [self horizontalOffsetForY:childY]);            
             CGPoint rightChildPoint = CGPointMake(rightChildX, childY);
             NSValue *rightChildPointValue = [NSValue valueWithCGPoint:rightChildPoint];
             
@@ -282,5 +284,19 @@
         }
     }
 }
+
+// horizontally space node buttons.  Decrease spacing as we move farther down tree
+- (double)horizontalOffsetForY:(float)yCoordinate
+{
+    // use exponential decay type function = amplitude * exp(-t/tau)
+    // tau = "time constant", scales base e exponent
+    double tau = 100.0;
+    double amplitude = (self.view.bounds.size.width / 5.0);
+    
+    // start amplitude at first level below root node, y = 2*kVerticalOffset
+    double horizontalOffset = ( amplitude * exp( -(yCoordinate - (2*kVerticalOffset)) / tau ));
+    return horizontalOffset;
+}
+
 
 @end
