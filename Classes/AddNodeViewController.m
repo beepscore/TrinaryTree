@@ -32,7 +32,7 @@
     [super viewDidLoad];
     
     UIBarButtonItem *nodesButton = [[UIBarButtonItem alloc] 
-                                    initWithTitle:NSLocalizedString(@"Nodes", @"")
+                                    initWithTitle:NSLocalizedString(@"Trinary Tree", @"")
                                     style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(dismissView)];
