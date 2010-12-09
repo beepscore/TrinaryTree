@@ -191,6 +191,7 @@
     // make sure nodes is not retaining aNode
     [[self nodes] removeObject:aNode];
     
+    // ????: I think I don't need this.  Instruments is not showing a leak.
     // free memory
     //[aNode release];
     

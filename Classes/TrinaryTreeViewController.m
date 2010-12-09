@@ -208,11 +208,12 @@
                         action:@selector(nodeButtonTapped:)
               forControlEvents:UIControlEventTouchUpInside];
         
+        aNodeButton.titleLabel.font = [UIFont systemFontOfSize:20];
         NSString *aNodeButtonTitle = [NSString stringWithFormat:@"%i", aNode.nodeContent.intValue];
         [aNodeButton setTitle:aNodeButtonTitle forState:UIControlStateNormal];
         
-        float buttonHeight = 30.0;
-        float buttonWidth = 30.0;    
+        float buttonHeight = 40.0;
+        float buttonWidth = 40.0;    
         
         aNodeButton.frame = CGRectMake(aPointValue.CGPointValue.x - (buttonWidth / 2.0),
                                        aPointValue.CGPointValue.y - (buttonHeight / 2.0),
