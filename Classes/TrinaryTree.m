@@ -58,7 +58,7 @@
         while (YES)
         {                    
             // we are at currentNode, and we will place aNode farther along the tree
-
+            
             // set aNode.parentNode to currentNode before we change currentNode
             aNode.parentNode = currentNode;
             
@@ -84,7 +84,7 @@
                     return;                        
                 }                 
             }
-
+            
             else if (aNode.nodeContent.intValue > currentNode.nodeContent.intValue)
             {
                 // go right
@@ -138,7 +138,7 @@
     {
         aNode.parentNode.rightNode = nil;
     }
-
+    
     // Keep references so we don't lose them when we delete aNode
     // Note they may be nil. in Objective C, ok to send a message to nil
     Node *leftOrphanNode = aNode.leftNode;
@@ -165,14 +165,15 @@
     aNode = nil;
     
     // Re-connect orphans to tree
-    // The order of re-connection may affect the result, and the order is arbitrary
-    if (leftOrphanNode)
-    {
-        [self insertNode:leftOrphanNode];
-    }
+    // The order of re-connection can affect the result, and the order is arbitrary
+    // If middle node exists, reconnect it first to minimize changes to tree appearance.
     if (middleOrphanNode)
     {
         [self insertNode:middleOrphanNode];
+    }
+    if (leftOrphanNode)
+    {
+        [self insertNode:leftOrphanNode];
     }
     if (rightOrphanNode)
     {

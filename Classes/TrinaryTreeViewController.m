@@ -30,7 +30,7 @@
     self.trinaryTree.delegate = self;
     self.trinaryTree.nodes = [[[NSMutableSet alloc] initWithCapacity:1] autorelease];
     
-    self.title = NSLocalizedString(@"Nodes", @"");
+    self.title = NSLocalizedString(@"Trinary Tree", @"");
     
     // Set up the add button.
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
