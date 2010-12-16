@@ -15,14 +15,9 @@
 @synthesize delegate;
 @synthesize rootNode;
 @synthesize leftOrphanNode, middleOrphanNode, rightOrphanNode;
-@synthesize nodes;
-
-
 
 - (void)dealloc
 {
-    [nodes release];
-    
     [rootNode release];
     [leftOrphanNode release];
     [middleOrphanNode release];
@@ -75,7 +70,6 @@
         // If a delete creates an orphan, TrinaryTree sets orphan parent nil before calling insert node
         self.rootNode.parentNode = nil;        
         
-        [[self nodes] addObject:aNode];
         [self.delegate trinaryTreeDidInsertNode:aNode];
         
     } else {
@@ -108,7 +102,6 @@
                     // left branch is empty, put aNode there
                     // aNode.parentNode is already set
                     currentNode.leftNode = aNode;
-                    [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as leftNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
                     [self.delegate trinaryTreeDidInsertNode:aNode];
@@ -126,7 +119,6 @@
                 } else {
                     // right branch is empty, put aNode there
                     currentNode.rightNode = aNode;
-                    [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as rightNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
                     [self.delegate trinaryTreeDidInsertNode:aNode];
@@ -143,7 +135,6 @@
                 } else {
                     // middle branch is empty, put aNode there
                     currentNode.middleNode = aNode;
-                    [[self nodes] addObject:aNode];
                     NSLog(@"added %@ as middleNode of %@", 
                           aNode.nodeContent, aNode.parentNode.nodeContent);
                     [self.delegate trinaryTreeDidInsertNode:aNode];
@@ -200,9 +191,6 @@
     // NOTE:  I think this statement caused a crash when positioned earlier in the method.
     // send delegate message with reference to node before delete node
     [self.delegate trinaryTreeWillDeleteNode:aNode];
-    
-    // remove aNode from list of nodes
-    [[self nodes] removeObject:aNode];
     
     // make sure we don't try to use a bad reference
     aNode = nil;

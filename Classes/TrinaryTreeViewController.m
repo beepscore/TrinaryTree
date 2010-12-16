@@ -33,7 +33,6 @@ const double kVerticalOffset = 50.0f;
     
     self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
     self.trinaryTree.delegate = self;
-    self.trinaryTree.nodes = [[[NSMutableSet alloc] initWithCapacity:1] autorelease];
     
     self.title = NSLocalizedString(@"Trinary Tree", @"");
     

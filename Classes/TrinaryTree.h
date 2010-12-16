@@ -20,7 +20,6 @@
 }
 @property (nonatomic, assign) id<TrinaryTreeDelegate> delegate;
 
-@property (nonatomic, retain) NSMutableSet *nodes;
 @property (nonatomic, retain) Node *rootNode;
 
 @property (nonatomic, retain) Node *leftOrphanNode;
