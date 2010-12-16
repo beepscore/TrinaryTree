@@ -13,7 +13,12 @@
 
 }
 @property (nonatomic, retain) NSNumber *nodeContent;
-@property (nonatomic, retain) Node *parentNode;
+
+// It's possible to manage a tree without each node having a reference to its parent.
+// However it's convenient to have the reference.
+// Manage property with assign to avoid circular retain between parent node and child node
+@property (nonatomic, assign) Node *parentNode;
+
 @property (nonatomic, retain) Node *leftNode;
 @property (nonatomic, retain) Node *middleNode;
 @property (nonatomic, retain) Node *rightNode;

@@ -14,13 +14,19 @@
 
 @synthesize delegate;
 @synthesize rootNode;
+@synthesize leftOrphanNode, middleOrphanNode, rightOrphanNode;
 @synthesize nodes;
+
 
 
 - (void)dealloc
 {
     [nodes release];
+    
     [rootNode release];
+    [leftOrphanNode release];
+    [middleOrphanNode release];
+    [rightOrphanNode release];
     
     [super dealloc];
 }
@@ -48,7 +54,7 @@
 - (void)insertNode:(Node *)aNode
 {
     NSLog(@"in TrinaryTree insertNode:");
-
+    
     if (!aNode)
     {
         return;
@@ -56,7 +62,7 @@
     
     if (!self.rootNode)
     {
-        // rootNode is empty, put aNode at root
+        // trinaryTree doesn't have a rootNode, put aNode at root
         self.rootNode = aNode;
         
         // defensive programming - aNode.parentNode should always arrive nil
@@ -151,35 +157,38 @@
     
     if (!aNode)
     {
-        NSLog(@"TrinaryTree deleteNode: !aNode return");
+        NSLog(@"TrinaryTree can't delete an empty node");
         return;
     }
     
+    // Keep a reference to any soon-to-be orphan nodes so we don't lose them when we delete aNode.
+    // Note reference may be nil.    
+    self.leftOrphanNode = aNode.leftNode;           
+    self.middleOrphanNode = aNode.middleNode;
+    self.rightOrphanNode = aNode.rightNode;
+    
+    // If aNode has a parent, remove parent's reference to aNode.
+    // This will reduce aNode's retain count
     if (aNode.parentNode)
     {
-        // disconnect aNode parent's link to aNode
-        if (aNode.parentNode.leftNode == aNode)
+        // Is aNode the leftChild of it's parent?
+        if (aNode == aNode.parentNode.leftNode)
         {
+            // Disconnect aNode parent's link to aNode
             aNode.parentNode.leftNode = nil;
         }
-        else if (aNode.parentNode.middleNode == aNode)
+        else if (aNode == aNode.parentNode.middleNode)
         {
             aNode.parentNode.middleNode = nil;
         }
-        else if (aNode.parentNode.rightNode == aNode)
+        else if (aNode == aNode.parentNode.rightNode)
         {
             aNode.parentNode.rightNode = nil;
         }
     }
     
-    // Keep references so we don't lose them when we delete aNode
-    // Note they may be nil. in Objective C, ok to send a message to nil
-    Node *leftOrphanNode = aNode.leftNode;
-    Node *middleOrphanNode = aNode.middleNode;
-    Node *rightOrphanNode = aNode.rightNode;
-
-    // make sure rootNode is not retaining aNode
-    if (self.rootNode == aNode)
+    // If aNode is the root of the tree, remove tree's reference to aNode.
+    if (aNode == self.rootNode)
     {
         self.rootNode = nil;
     } 
@@ -187,39 +196,35 @@
     // NOTE:  I think this statement caused a crash when positioned earlier in the method.
     // send delegate message with reference to node before delete node
     [self.delegate trinaryTreeWillDeleteNode:aNode];
-
-    // make sure nodes is not retaining aNode
-    [[self nodes] removeObject:aNode];
     
-    // ????: I think I don't need this.  Instruments is not showing a leak.
-    // free memory
-    //[aNode release];
+    // remove aNode from list of nodes
+    [[self nodes] removeObject:aNode];
     
     // make sure we don't try to use a bad reference
     aNode = nil;
     
-    // Disconnect aNode children's link to their ex-parent aNode 
-    // and re-connect orphans to tree
+    // For any children of aNode, remove the child's reference to it's ex-parent aNode.
+    // Then re-connect orphans to tree.
     // The order of re-connection can affect the result, and the order is arbitrary
     // If middle node exists, reconnect it first to minimize changes to tree appearance.
-    if (middleOrphanNode)
+    if (self.middleOrphanNode)
     {
-        middleOrphanNode.parentNode = nil;
-        [self insertNode:middleOrphanNode];
+        self.middleOrphanNode.parentNode = nil;
+        [self insertNode:self.middleOrphanNode];
     }
-    if (leftOrphanNode)
+    if (self.leftOrphanNode)
     {
-        leftOrphanNode.parentNode = nil;
-        [self insertNode:leftOrphanNode];
+        self.leftOrphanNode.parentNode = nil;
+        [self insertNode:self.leftOrphanNode];
     }
-    if (rightOrphanNode)
+    if (self.rightOrphanNode)
     {
-        rightOrphanNode.parentNode = nil;
-    [self insertNode:rightOrphanNode];
+        self.rightOrphanNode.parentNode = nil;
+        [self insertNode:self.rightOrphanNode];
     }
     [self listNodes];
     NSLog(@"end TrinaryTree deleteNode:");
-
+    
 }
 
 

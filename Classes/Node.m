@@ -18,7 +18,10 @@
 - (void)dealloc
 {
     [nodeContent release];
-    [parentNode release];
+
+    // don't retain parent node, don't release it
+    parentNode = nil;
+    
     [leftNode release];
     [middleNode release];
     [rightNode release];

@@ -23,6 +23,10 @@
 @property (nonatomic, retain) NSMutableSet *nodes;
 @property (nonatomic, retain) Node *rootNode;
 
+@property (nonatomic, retain) Node *leftOrphanNode;
+@property (nonatomic, retain) Node *middleOrphanNode;
+@property (nonatomic, retain) Node *rightOrphanNode;
+
 - (void)listNodes;
 - (void)insertNode:(Node *)aNode;
 - (void)deleteNode:(Node *)aNode;
