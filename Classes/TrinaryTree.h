@@ -27,7 +27,7 @@
 @property (nonatomic, retain) Node *middleOrphanNode;
 @property (nonatomic, retain) Node *rightOrphanNode;
 
-- (void)listNodes;
+- (void)listTreeBranchStartingAtNode:(Node *)aNode;
 - (void)insertNode:(Node *)aNode;
 - (void)deleteNode:(Node *)aNode;
 

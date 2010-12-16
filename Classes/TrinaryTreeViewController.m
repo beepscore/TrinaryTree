@@ -166,10 +166,10 @@ const double kVerticalOffset = 50.0f;
 #pragma mark -
 #pragma mark View methods
 - (void)cleanViewAndShowTree
-{
-    
+{    
     NSLog(@"in TrinaryTreeViewController cleanViewAndShowTree");
-    [self.trinaryTree listNodes];
+    NSLog(@"Root node = %i", self.trinaryTree.rootNode.nodeContent.intValue);
+    [self.trinaryTree listTreeBranchStartingAtNode:self.trinaryTree.rootNode];
     
     // empty buttonNodeDictionary, we will be adding new labels 
     [self.buttonNodeDictionary removeAllObjects];

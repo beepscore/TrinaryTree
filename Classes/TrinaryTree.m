@@ -34,19 +34,25 @@
 
 #pragma mark -
 #pragma mark Methods to manage tree
-- (void)listNodes
+- (void)listTreeBranchStartingAtNode:(Node *)aNode
 {
-    if (!self.rootNode)
+    if (aNode)
     {
-        NSLog(@"Root node is nil");
-    } else {
-        NSLog(@"Root node = %i, ", self.rootNode.nodeContent.intValue);
-    }
-    
-    NSLog(@"Nodes: ");
-    
-    for (Node* aNode in [self nodes]) {
         NSLog(@"%i, ", aNode.nodeContent.intValue);
+        {
+            if (aNode.leftNode)
+            {
+                [self listTreeBranchStartingAtNode:aNode.leftNode];
+            }
+            if (aNode.middleNode)
+            {
+                [self listTreeBranchStartingAtNode:aNode.middleNode];
+            }
+            if (aNode.rightNode)
+            {
+                [self listTreeBranchStartingAtNode:aNode.rightNode];        
+            }
+        }
     }
 }
 
@@ -70,7 +76,6 @@
         self.rootNode.parentNode = nil;        
         
         [[self nodes] addObject:aNode];
-        NSLog(@"added %@ as rootNode", aNode.nodeContent);
         [self.delegate trinaryTreeDidInsertNode:aNode];
         
     } else {
@@ -153,7 +158,6 @@
 - (void)deleteNode:(Node *)aNode
 {
     NSLog(@"start TrinaryTree deleteNode:");
-    [self listNodes];
     
     if (!aNode)
     {
@@ -222,9 +226,7 @@
         self.rightOrphanNode.parentNode = nil;
         [self insertNode:self.rightOrphanNode];
     }
-    [self listNodes];
     NSLog(@"end TrinaryTree deleteNode:");
-    
 }
 
 
