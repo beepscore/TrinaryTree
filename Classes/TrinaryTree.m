@@ -7,7 +7,7 @@
 //
 
 #import "TrinaryTree.h"
-#import "Node.h";
+#import "Node.h"
 
 
 @implementation TrinaryTree
