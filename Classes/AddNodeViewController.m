@@ -17,31 +17,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem *nodesButton = [[UIBarButtonItem alloc] 
-                                    initWithTitle:NSLocalizedString(@"Trinary Tree", @"")
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(dismissView)];
-    
-    self.navigationItem.leftBarButtonItem = nodesButton;
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                               target:self
-                                               action:@selector(handleTappedDone)];
-    
+
     // make the text field first responder, which calls up the keyboard
     [[self nodeContentTextField] becomeFirstResponder];
 }
 
 
-// method signature without parameter can be called with a simple selector,
-// for use by a UIBarButtonItem
-- (void)dismissView
+- (IBAction)dismissView:(id)sender
 {
-    // Call the delegate to dismiss the view
-    [self.delegate addNodeViewControllerDidRequestDismissView];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -61,11 +45,11 @@
 }
 
 
-- (void)handleTappedDone
+- (IBAction)handleTappedDone:(id)sender
 {        
     if ((nil == self.nodeContentTextField.text) || [self.nodeContentTextField.text isEqualToString:@""] )
     {
-        [self dismissView];
+        [self dismissView:self];
     } else {
         
         // Use a number formatter on string to handle localization and user prefs
@@ -76,7 +60,7 @@
         NSNumber *cleanedNodeNumber = [formatter numberFromString:self.nodeContentTextField.text];
         
         [self insertNodeWithContent:cleanedNodeNumber];
-        [self dismissView];
+        [self dismissView:self];
     }
 }
 

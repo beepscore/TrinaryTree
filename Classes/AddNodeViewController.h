@@ -9,14 +9,7 @@
 #import <UIKit/UIKit.h>
 @class TrinaryTree;
 
-
-@protocol AddNodeViewControllerDelegate <NSObject>
-- (void)addNodeViewControllerDidRequestDismissView;
-@end
-
 @interface AddNodeViewController : UIViewController <UITextFieldDelegate>
-
-@property (nonatomic, weak) id<AddNodeViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) IBOutlet UITextField *nodeContentTextField;
 @property (nonatomic, strong) NSNumber *nodeContent;

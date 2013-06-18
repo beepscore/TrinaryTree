@@ -8,6 +8,7 @@
 
 #import "TrinaryTreeViewController.h"
 #import "Node.h"
+#import "AddNodeViewController.h"
 #import <math.h>
 
 const double kVerticalOffset = 50.0f;
@@ -33,18 +34,10 @@ const double kVerticalOffset = 50.0f;
     
     self.title = NSLocalizedString(@"Trinary Tree", @"");
     
-    // Set up the add button.
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] 
-                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                  target:self
-                                  action:@selector(presentAddNodeViewController)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    
     self.buttonNodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
     
     buttonTagIndex = 0;
 }
-
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -52,34 +45,13 @@ const double kVerticalOffset = 50.0f;
 	// Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Add a new node
-- (void)presentAddNodeViewController
-{    
-    // Create the modal view controller
-    // Reference http://useyourloaf.com/blog/2010/5/3/ipad-modal-view-controllers.html
-    AddNodeViewController *addNodeViewController = [[AddNodeViewController alloc] initWithNibName:nil bundle:nil];
-    
-    // We are responsible for dismissing the modal view.
-    // Set ourselves as delegate, to get callback.    
-    addNodeViewController.delegate = self;
-    
-    addNodeViewController.trinaryTree = self.trinaryTree;
-    
-    // Create a Navigation controller to get a navigation bar to hold the done button  
-    UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:addNodeViewController];
-    
-    // show the navigation controller
-    [self presentViewController:navController
-                       animated:YES
-                     completion:nil];
-}
-
-#pragma mark - AddNodeViewControllerDelegate method
-- (void)addNodeViewControllerDidRequestDismissView
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Dismiss the view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([[segue identifier] isEqualToString:@"addVCSegue"])
+    {
+        AddNodeViewController *addNodeViewController = [segue destinationViewController];
+        addNodeViewController.trinaryTree = self.trinaryTree;
+    }
 }
 
 - (void)nodeButtonTapped:(id)sender

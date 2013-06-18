@@ -20,7 +20,6 @@
 		DEBA103512B081C500015193 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = DEBA103412B081C500015193 /* Icon.png */; };
 		DEBC06C912AC68E500FC8C9D /* Node.m in Sources */ = {isa = PBXBuildFile; fileRef = DEBC06C812AC68E500FC8C9D /* Node.m */; };
 		DEE04D1C12AC9F3100B946C8 /* TrinaryTree.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */; };
-		DEE93B7C12AC2E1200379D72 /* AddNodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEE93B7B12AC2E1200379D72 /* AddNodeViewController.xib */; };
 		DEE93BBD12AC316700379D72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DEE93BBC12AC316700379D72 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +45,6 @@
 		DEBC06C812AC68E500FC8C9D /* Node.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Node.m; sourceTree = "<group>"; };
 		DEE04D1A12AC9F3100B946C8 /* TrinaryTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrinaryTree.h; sourceTree = "<group>"; };
 		DEE04D1B12AC9F3100B946C8 /* TrinaryTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrinaryTree.m; sourceTree = "<group>"; };
-		DEE93B7B12AC2E1200379D72 /* AddNodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddNodeViewController.xib; sourceTree = "<group>"; };
 		DEE93BBA12AC313900379D72 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DEE93B7B12AC2E1200379D72 /* AddNodeViewController.xib */,
 				DEBA103412B081C500015193 /* Icon.png */,
 				DE6A69CD176FF867002FE959 /* Default-568h@2x.png */,
 				DE88DDD1177027890023B95A /* MainStoryboard_iPhone.storyboard */,
@@ -187,7 +184,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8A42F712AC182A00BB7261 /* README.md in Resources */,
-				DEE93B7C12AC2E1200379D72 /* AddNodeViewController.xib in Resources */,
 				DEE93BBD12AC316700379D72 /* Localizable.strings in Resources */,
 				DEBA103512B081C500015193 /* Icon.png in Resources */,
 				DE6A69CE176FF867002FE959 /* Default-568h@2x.png in Resources */,
