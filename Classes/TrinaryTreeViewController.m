@@ -83,13 +83,11 @@ const double kVerticalOffset = 50.0f;
     }
 }
 
-
 #pragma mark - TrinaryTreeDelegate methods
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {         
     [self cleanViewAndShowTree];
 }
-
 
 - (void)trinaryTreeWillDeleteNode:(Node *)aNode
 {
@@ -97,7 +95,6 @@ const double kVerticalOffset = 50.0f;
     // cleanViewAndShowTree empties the entire buttonNodeDictionary
     [self cleanViewAndShowTree];
 }
-
 
 #pragma mark - View methods
 - (void)cleanViewAndShowTree
@@ -125,7 +122,6 @@ const double kVerticalOffset = 50.0f;
           fromNode:self.trinaryTree.rootNode 
       atPointValue:currentPointValue];    
 }
-
 
 - (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue
 {
@@ -160,7 +156,6 @@ const double kVerticalOffset = 50.0f;
         [self.view addSubview:aNodeButton]; 
     }
 }
-
 
 - (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue
 {
@@ -232,6 +227,5 @@ const double kVerticalOffset = 50.0f;
     double horizontalOffset = ( amplitude * exp( -(yCoordinate - (2*kVerticalOffset)) / tau ));
     return horizontalOffset;
 }
-
 
 @end

@@ -8,7 +8,6 @@
 
 #import "Node.h"
 
-
 @implementation Node
 
 @end

@@ -9,7 +9,6 @@
 #import "TrinaryTree.h"
 #import "Node.h"
 
-
 @implementation TrinaryTree
 
 #pragma mark - Methods to manage tree
@@ -34,7 +33,6 @@
         }
     }
 }
-
 
 - (void)insertNode:(Node *)aNode
 {
@@ -128,7 +126,6 @@
         }
     }
 }
-
 
 - (void)deleteNode:(Node *)aNode
 {
