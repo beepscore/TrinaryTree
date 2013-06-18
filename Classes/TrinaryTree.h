@@ -16,15 +16,15 @@
 
 @interface TrinaryTree : NSObject
 {
-    id<TrinaryTreeDelegate> delegate;
+    id<TrinaryTreeDelegate> __weak delegate;
 }
-@property (nonatomic, assign) id<TrinaryTreeDelegate> delegate;
+@property (nonatomic, weak) id<TrinaryTreeDelegate> delegate;
 
-@property (nonatomic, retain) Node *rootNode;
+@property (nonatomic, strong) Node *rootNode;
 
-@property (nonatomic, retain) Node *leftOrphanNode;
-@property (nonatomic, retain) Node *middleOrphanNode;
-@property (nonatomic, retain) Node *rightOrphanNode;
+@property (nonatomic, strong) Node *leftOrphanNode;
+@property (nonatomic, strong) Node *middleOrphanNode;
+@property (nonatomic, strong) Node *rightOrphanNode;
 
 - (void)listTreeBranchStartingAtNode:(Node *)aNode;
 - (void)insertNode:(Node *)aNode;

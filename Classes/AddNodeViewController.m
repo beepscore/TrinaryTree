@@ -38,12 +38,11 @@
                                     action:@selector(dismissView)];
     
     self.navigationItem.leftBarButtonItem = nodesButton;
-    [nodesButton release];
     
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                target:self
-                                               action:@selector(handleTappedDone)] autorelease];
+                                               action:@selector(handleTappedDone)];
     
     // make the text field first responder, which calls up the keyboard
     [[self nodeContentTextField] becomeFirstResponder];
@@ -79,14 +78,6 @@
 }
 
 
-- (void)dealloc
-{     
-    [nodeContentTextField release];
-    [nodeContent release];
-    [trinaryTree release];
-    
-    [super dealloc];
-}
 
 
 // Override to allow orientations other than the default portrait orientation.
@@ -120,7 +111,6 @@
         
         // formatter numberFromString: is not a class convenience method (aka factory method).
         NSNumber *cleanedNodeNumber = [formatter numberFromString:self.nodeContentTextField.text];
-        [formatter release];
         
         [self insertNodeWithContent:cleanedNodeNumber];
         [self dismissView];
@@ -132,7 +122,7 @@
 #pragma mark Add a new object
 - (void)insertNodeWithContent:(NSNumber *)aNodeContent
 {    
-    Node *newNode = [[[Node alloc] init] autorelease];
+    Node *newNode = [[Node alloc] init];
     newNode.nodeContent = aNodeContent;
 
     // I tried putting the trinaryTree in app delegate, but now

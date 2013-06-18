@@ -31,7 +31,7 @@ const double kVerticalOffset = 50.0f;
 {
     [super viewDidLoad];
     
-    self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
+    self.trinaryTree = [[TrinaryTree alloc] init];
     self.trinaryTree.delegate = self;
     
     self.title = NSLocalizedString(@"Trinary Tree", @"");
@@ -42,7 +42,6 @@ const double kVerticalOffset = 50.0f;
                                   target:self
                                   action:@selector(presentAddNodeViewController)];
     self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
     
     self.buttonNodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
     
@@ -63,13 +62,6 @@ const double kVerticalOffset = 50.0f;
 }
 
 
-- (void)dealloc
-{
-    [trinaryTree release];
-    [buttonNodeDictionary release];
-    
-    [super dealloc];
-}
 
 #pragma mark -
 // Override to allow orientations other than the default portrait orientation.
@@ -103,9 +95,7 @@ const double kVerticalOffset = 50.0f;
     // show the navigation controller modally    
     [self presentModalViewController:navController animated:YES];
     
-    [navController release];
     
-    [addNodeViewController release];
 }
 
 #pragma mark -

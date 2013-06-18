@@ -18,14 +18,14 @@
 {
     // protected is default
 @protected
-    id<AddNodeViewControllerDelegate> delegate;
+    id<AddNodeViewControllerDelegate> __weak delegate;
     
 }
 
-@property (nonatomic, assign) id<AddNodeViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<AddNodeViewControllerDelegate> delegate;
 
-@property (nonatomic, retain) IBOutlet UITextField *nodeContentTextField;
-@property (nonatomic, retain) NSNumber *nodeContent;
-@property (nonatomic, retain) TrinaryTree *trinaryTree;
+@property (nonatomic, strong) IBOutlet UITextField *nodeContentTextField;
+@property (nonatomic, strong) NSNumber *nodeContent;
+@property (nonatomic, strong) TrinaryTree *trinaryTree;
 
 @end

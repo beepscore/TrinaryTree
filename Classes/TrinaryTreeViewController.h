@@ -17,8 +17,8 @@
 {
     NSInteger buttonTagIndex;
 }
-@property (nonatomic, retain) TrinaryTree *trinaryTree;
-@property (nonatomic, retain) NSMutableDictionary *buttonNodeDictionary;
+@property (nonatomic, strong) TrinaryTree *trinaryTree;
+@property (nonatomic, strong) NSMutableDictionary *buttonNodeDictionary;
 
 @end
 
