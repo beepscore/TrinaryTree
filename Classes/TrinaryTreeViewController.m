@@ -81,7 +81,7 @@ const double kVerticalOffset = 50.0f;
 - (void)addNodeViewControllerDidRequestDismissView
 {
     // Dismiss the modal view controller    
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
