@@ -23,9 +23,7 @@
 @synthesize nodeContent;
 @synthesize trinaryTree;
 
-#pragma mark -
-#pragma mark View lifecycle
-
+#pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
@@ -66,9 +64,7 @@
     self.nodeContentTextField = nil;
 }
 
-
-#pragma mark -
-#pragma mark Memory management
+#pragma mark - Memory management
 - (void)didReceiveMemoryWarning
 {    
     // Releases the view if it doesn't have a superview.
@@ -89,9 +85,7 @@
             || (interfaceOrientation == UIInterfaceOrientationLandscapeRight) );
 }
 
-
-#pragma mark -
-#pragma mark UITextFieldDelegate
+#pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)aTextField
 {
     // NSLog(@"%@", @"in textFieldDidEndEditing");
@@ -117,9 +111,7 @@
     }
 }
 
-
-#pragma mark -
-#pragma mark Add a new object
+#pragma mark - Add a new object
 - (void)insertNodeWithContent:(NSNumber *)aNodeContent
 {    
     Node *newNode = [[Node alloc] init];

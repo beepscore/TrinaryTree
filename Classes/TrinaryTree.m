@@ -16,10 +16,7 @@
 @synthesize rootNode;
 @synthesize leftOrphanNode, middleOrphanNode, rightOrphanNode;
 
-
-
-#pragma mark -
-#pragma mark Methods to manage tree
+#pragma mark - Methods to manage tree
 - (void)listTreeBranchStartingAtNode:(Node *)aNode
 {
     if (aNode)

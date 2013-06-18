@@ -25,8 +25,7 @@ const double kVerticalOffset = 50.0f;
 
 @synthesize trinaryTree, buttonNodeDictionary;
 
-#pragma mark -
-#pragma mark View lifecycle
+#pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -74,8 +73,7 @@ const double kVerticalOffset = 50.0f;
 }
 
 
-#pragma mark -
-#pragma mark Add a new node
+#pragma mark - Add a new node
 - (void)presentAddNodeViewController
 {    
     // Create the modal view controller
@@ -98,8 +96,7 @@ const double kVerticalOffset = 50.0f;
     
 }
 
-#pragma mark -
-#pragma mark AddNodeViewControllerDelegate method
+#pragma mark - AddNodeViewControllerDelegate method
 - (void)addNodeViewControllerDidRequestDismissView
 {
     // Dismiss the modal view controller    
@@ -136,8 +133,7 @@ const double kVerticalOffset = 50.0f;
 }
 
 
-#pragma mark -
-#pragma mark TrinaryTreeDelegate methods
+#pragma mark - TrinaryTreeDelegate methods
 - (void)trinaryTreeDidInsertNode:(Node *)aNode
 {         
     [self cleanViewAndShowTree];
@@ -152,8 +148,7 @@ const double kVerticalOffset = 50.0f;
 }
 
 
-#pragma mark -
-#pragma mark View methods
+#pragma mark - View methods
 - (void)cleanViewAndShowTree
 {    
     NSLog(@"in TrinaryTreeViewController cleanViewAndShowTree");
