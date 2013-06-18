@@ -10,12 +10,6 @@
 #import "Node.h"
 #import "TrinaryTree.h"
 
-@interface AddNodeViewController ()
-- (void)dismissView;
-- (void)handleTappedDone;
-- (void)insertNodeWithContent:(NSNumber *)aNodeContent;
-@end
-
 @implementation AddNodeViewController
 
 #pragma mark - View lifecycle
