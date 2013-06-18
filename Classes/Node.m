@@ -11,17 +11,10 @@
 
 @implementation Node
 
-@synthesize nodeContent;
-@synthesize parentNode, leftNode, middleNode, rightNode;
-
-
 - (void)dealloc
 {
-
     // don't retain parent node, don't release it
-    parentNode = nil;
-    
-    
+    self.parentNode = nil;
 }
 
 @end

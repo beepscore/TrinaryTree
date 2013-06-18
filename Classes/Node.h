@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface Node : NSObject {
+@interface Node : NSObject
 
-}
 @property (nonatomic, strong) NSNumber *nodeContent;
 
 // It's possible to manage a tree without each node having a reference to its parent.
 // However it's convenient to have the reference.
-// Manage property with assign to avoid circular retain between parent node and child node
+// Manage property with weak to avoid circular retain between parent node and child node
 @property (nonatomic, weak) Node *parentNode;
 
 @property (nonatomic, strong) Node *leftNode;
