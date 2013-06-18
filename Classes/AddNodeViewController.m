@@ -56,14 +56,6 @@
 }
 
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.nodeContentTextField = nil;
-}
-
 #pragma mark - Memory management
 - (void)didReceiveMemoryWarning
 {    
@@ -72,9 +64,6 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
-
-
-
 
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
