@@ -11,10 +11,4 @@
 
 @implementation Node
 
-- (void)dealloc
-{
-    // don't retain parent node, don't release it
-    self.parentNode = nil;
-}
-
 @end
