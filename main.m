@@ -7,11 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TrinaryTreeAppDelegate.h"
 
 int main(int argc, char *argv[]) {
     
     @autoreleasepool {
-        int retVal = UIApplicationMain(argc, argv, nil, nil);
+        int retVal = UIApplicationMain(argc,
+                                       argv,
+                                       nil,
+                                       NSStringFromClass([TrinaryTreeAppDelegate class]));
         return retVal;
     }
 }
+
+
