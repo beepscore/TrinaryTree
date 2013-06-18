@@ -15,12 +15,6 @@
 @end
 
 @interface AddNodeViewController : UIViewController <UITextFieldDelegate>
-{
-    // protected is default
-@protected
-    id<AddNodeViewControllerDelegate> __weak delegate;
-    
-}
 
 @property (nonatomic, weak) id<AddNodeViewControllerDelegate> delegate;
 

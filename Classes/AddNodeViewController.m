@@ -18,11 +18,6 @@
 
 @implementation AddNodeViewController
 
-@synthesize delegate;
-@synthesize nodeContentTextField;
-@synthesize nodeContent;
-@synthesize trinaryTree;
-
 #pragma mark - View lifecycle
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
