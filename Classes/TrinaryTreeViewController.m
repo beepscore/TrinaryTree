@@ -71,19 +71,18 @@ const double kVerticalOffset = 50.0f;
     UINavigationController *navController = [[UINavigationController alloc]
                                              initWithRootViewController:addNodeViewController];
     
-    // show the navigation controller modally    
-    [self presentModalViewController:navController animated:YES];
-    
-    
+    // show the navigation controller
+    [self presentViewController:navController
+                       animated:YES
+                     completion:nil];
 }
 
 #pragma mark - AddNodeViewControllerDelegate method
 - (void)addNodeViewControllerDidRequestDismissView
 {
-    // Dismiss the modal view controller    
+    // Dismiss the view controller
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 - (void)nodeButtonTapped:(id)sender
 {
