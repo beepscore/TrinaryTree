@@ -70,12 +70,7 @@
     Node *newNode = [[Node alloc] init];
     newNode.nodeContent = aNodeContent;
 
-    // I tried putting the trinaryTree in app delegate, but now
-    // have it as a property of TrinaryTreeViewController and AddNodeViewController.
-    // ref http://stackoverflow.com/questions/855456/compiler-warning-not-found-in-protocols-when-using-uiapplication-sharedapp    
-    //[[[[UIApplication sharedApplication] delegate] trinaryTree] insertNode:newNode];  
-
-    [self.trinaryTree insertNode:newNode];  
+    [self.trinaryTree insertNode:newNode];
 }
 
 @end
