@@ -15,9 +15,7 @@
 @end
 
 @interface TrinaryTree : NSObject
-{
-    id<TrinaryTreeDelegate> __weak delegate;
-}
+
 @property (nonatomic, weak) id<TrinaryTreeDelegate> delegate;
 
 @property (nonatomic, strong) Node *rootNode;

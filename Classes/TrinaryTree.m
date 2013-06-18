@@ -12,10 +12,6 @@
 
 @implementation TrinaryTree
 
-@synthesize delegate;
-@synthesize rootNode;
-@synthesize leftOrphanNode, middleOrphanNode, rightOrphanNode;
-
 #pragma mark - Methods to manage tree
 - (void)listTreeBranchStartingAtNode:(Node *)aNode
 {
