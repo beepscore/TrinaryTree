@@ -20,10 +20,6 @@
 
 @property (nonatomic, strong) Node *rootNode;
 
-@property (nonatomic, strong) Node *leftOrphanNode;
-@property (nonatomic, strong) Node *middleOrphanNode;
-@property (nonatomic, strong) Node *rightOrphanNode;
-
 - (void)listTreeBranchStartingAtNode:(Node *)aNode;
 - (void)insertNode:(Node *)aNode;
 - (void)deleteNode:(Node *)aNode;

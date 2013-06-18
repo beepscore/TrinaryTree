@@ -141,10 +141,10 @@
     }
     
     // Keep a reference to any soon-to-be orphan nodes so we don't lose them when we delete aNode.
-    // Note reference may be nil.    
-    self.leftOrphanNode = aNode.leftNode;           
-    self.middleOrphanNode = aNode.middleNode;
-    self.rightOrphanNode = aNode.rightNode;
+    // Note right hand side references may be nil.
+    Node *leftOrphanNode = aNode.leftNode;
+    Node *middleOrphanNode = aNode.middleNode;
+    Node *rightOrphanNode = aNode.rightNode;
     
     // If aNode has a parent, remove parent's reference to aNode.
     // This will reduce aNode's retain count
@@ -183,23 +183,22 @@
     // Then re-connect orphans to tree.
     // The order of re-connection can affect the result, and the order is arbitrary
     // If middle node exists, reconnect it first to minimize changes to tree appearance.
-    if (self.middleOrphanNode)
+    if (middleOrphanNode)
     {
-        self.middleOrphanNode.parentNode = nil;
-        [self insertNode:self.middleOrphanNode];
+        middleOrphanNode.parentNode = nil;
+        [self insertNode:middleOrphanNode];
     }
-    if (self.leftOrphanNode)
+    if (leftOrphanNode)
     {
-        self.leftOrphanNode.parentNode = nil;
-        [self insertNode:self.leftOrphanNode];
+        leftOrphanNode.parentNode = nil;
+        [self insertNode:leftOrphanNode];
     }
-    if (self.rightOrphanNode)
+    if (rightOrphanNode)
     {
-        self.rightOrphanNode.parentNode = nil;
-        [self insertNode:self.rightOrphanNode];
+        rightOrphanNode.parentNode = nil;
+        [self insertNode:rightOrphanNode];
     }
     NSLog(@"end TrinaryTree deleteNode:");
 }
-
 
 @end
