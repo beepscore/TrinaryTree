@@ -1,6 +1,7 @@
-TrinaryTree adds and deletes nodes in a tree.
-
 Steve Baker Beepscore LLC 5 Dec 2010
+
+# TrinaryTree
+Adds and deletes nodes in a tree.
 
 # Specification
 Implement insert and delete in a tri-nary tree.  Much like a binary tree but with 3 child nodes for each parent instead of two -- with the left node being values < parent, the right node values > parent, and the middle node values == parent.  For example, if I added the following nodes to the tree in this
@@ -24,7 +25,7 @@ content cant be nil, other props (the 4 nodes) can?
 Might run faster to use a dictionary for connection properties, not sure.
 For now, don't use dictionary.
 
-Add Node:
+### Add Node:
 Always start at top?  Yes, that's why second 2 isn't child of second 5.
 Is branch empty?
 	Yes, add node and set node content = number.
@@ -32,7 +33,7 @@ Is branch empty?
 
 Repeat until find empty branch and fill it.
 
-Delete Node:
+### Delete Node:
 Delete any node.  Keep references to kids before delete!
 Now we have 0-1 parent tree and 0-3 orphan trees.
 Attach like add?
