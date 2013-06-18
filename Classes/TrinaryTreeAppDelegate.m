@@ -21,6 +21,8 @@
     
     // Override point for customization after application launch.
 
+    [self.window setRootViewController:navigationController];
+    
     // Add the view controller's view to the window and display.
     [self.window addSubview:navigationController.view];
     [self.window makeKeyAndVisible];
@@ -77,12 +79,6 @@
 }
 
 
-- (void)dealloc
-{
-    [navigationController release];
-    [window release];
-    [super dealloc];
-}
 
 
 @end

@@ -16,15 +16,6 @@
 @synthesize rootNode;
 @synthesize leftOrphanNode, middleOrphanNode, rightOrphanNode;
 
-- (void)dealloc
-{
-    [rootNode release];
-    [leftOrphanNode release];
-    [middleOrphanNode release];
-    [rightOrphanNode release];
-    
-    [super dealloc];
-}
 
 
 #pragma mark -

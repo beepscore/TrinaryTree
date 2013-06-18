@@ -31,7 +31,7 @@ const double kVerticalOffset = 50.0f;
 {
     [super viewDidLoad];
     
-    self.trinaryTree = [[[TrinaryTree alloc] init] autorelease];
+    self.trinaryTree = [[TrinaryTree alloc] init];
     self.trinaryTree.delegate = self;
     
     self.title = NSLocalizedString(@"Trinary Tree", @"");
@@ -42,7 +42,6 @@ const double kVerticalOffset = 50.0f;
                                   target:self
                                   action:@selector(presentAddNodeViewController)];
     self.navigationItem.rightBarButtonItem = addButton;
-    [addButton release];
     
     self.buttonNodeDictionary = [[NSMutableDictionary alloc] initWithCapacity:1];
     
@@ -63,13 +62,6 @@ const double kVerticalOffset = 50.0f;
 }
 
 
-- (void)dealloc
-{
-    [trinaryTree release];
-    [buttonNodeDictionary release];
-    
-    [super dealloc];
-}
 
 #pragma mark -
 // Override to allow orientations other than the default portrait orientation.
@@ -103,9 +95,7 @@ const double kVerticalOffset = 50.0f;
     // show the navigation controller modally    
     [self presentModalViewController:navController animated:YES];
     
-    [navController release];
     
-    [addNodeViewController release];
 }
 
 #pragma mark -
@@ -124,8 +114,8 @@ const double kVerticalOffset = 50.0f;
     // Handle nodeButton tapped
     // ref http://stackoverflow.com/questions/450222/passing-a-parameter-in-setaction
     NSInteger senderIDTag = [sender tag];
-    NSNumber *senderTagNumber = [NSNumber numberWithInt:senderIDTag];
-    Node *nodeForButton = [self.buttonNodeDictionary objectForKey:senderTagNumber];
+    NSNumber *senderTagNumber = @(senderIDTag);
+    Node *nodeForButton = (self.buttonNodeDictionary)[senderTagNumber];
     
     // condition should always be true - defensive programming
     if (nodeForButton)
@@ -135,7 +125,7 @@ const double kVerticalOffset = 50.0f;
         // Use the dictionary node value to find all keys that match.
         // keyArray should have only one element at index 0
         NSArray *keyArray = [self.buttonNodeDictionary allKeysForObject:nodeForButton];
-        NSNumber *keyForANode = [keyArray objectAtIndex:0];
+        NSNumber *keyForANode = keyArray[0];
         
         // delete key-value pair
         [self.buttonNodeDictionary removeObjectForKey:keyForANode];        
@@ -199,10 +189,10 @@ const double kVerticalOffset = 50.0f;
         
         // Tag the button to identify it to selector
         aNodeButton.tag = buttonTagIndex;
-        NSNumber *aNodeButtonTagNumber = [NSNumber numberWithInt:aNodeButton.tag];
+        NSNumber *aNodeButtonTagNumber = @(aNodeButton.tag);
         // Associate the button tag with the node, so the selector can get the node
         // Note this will throw an exception if object or key are nil
-        [self.buttonNodeDictionary setObject:aNode forKey:aNodeButtonTagNumber];
+        (self.buttonNodeDictionary)[aNodeButtonTagNumber] = aNode;
         
         buttonTagIndex ++;
         

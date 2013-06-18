@@ -17,16 +17,11 @@
 
 - (void)dealloc
 {
-    [nodeContent release];
 
     // don't retain parent node, don't release it
     parentNode = nil;
     
-    [leftNode release];
-    [middleNode release];
-    [rightNode release];
     
-    [super dealloc];
 }
 
 @end
