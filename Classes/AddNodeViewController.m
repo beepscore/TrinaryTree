@@ -22,13 +22,6 @@
     [[self nodeContentTextField] becomeFirstResponder];
 }
 
-
-- (IBAction)dismissView:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
 #pragma mark - Memory management
 - (void)didReceiveMemoryWarning
 {    
@@ -44,6 +37,11 @@
     // NSLog(@"%@", @"in textFieldDidEndEditing");
 }
 
+#pragma mark - IBActions
+- (IBAction)dismissView:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (IBAction)handleTappedDone:(id)sender
 {        

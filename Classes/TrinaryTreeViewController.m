@@ -54,6 +54,7 @@ const double kVerticalOffset = 50.0f;
     }
 }
 
+#pragma mark - IBActions
 - (void)nodeButtonTapped:(id)sender
 {
     NSLog(@"in TrinaryTreeViewController nodeButtonTapped:");
