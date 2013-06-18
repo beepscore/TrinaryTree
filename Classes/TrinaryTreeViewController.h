@@ -14,11 +14,6 @@
 
 @interface TrinaryTreeViewController : UIViewController 
 <AddNodeViewControllerDelegate, TrinaryTreeDelegate> 
-{
-    NSInteger buttonTagIndex;
-}
-@property (nonatomic, strong) TrinaryTree *trinaryTree;
-@property (nonatomic, strong) NSMutableDictionary *buttonNodeDictionary;
 
 @end
 

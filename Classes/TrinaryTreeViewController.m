@@ -12,6 +12,15 @@
 
 const double kVerticalOffset = 50.0f;
 
+@interface TrinaryTreeViewController ()
+{
+    NSInteger buttonTagIndex;
+}
+@property (nonatomic, strong) TrinaryTree *trinaryTree;
+@property (nonatomic, strong) NSMutableDictionary *buttonNodeDictionary;
+@end
+
+
 @implementation TrinaryTreeViewController
 
 #pragma mark - View lifecycle
