@@ -12,18 +12,7 @@
 
 const double kVerticalOffset = 50.0f;
 
-@interface TrinaryTreeViewController ()
-- (void)nodeButtonTapped:(id)sender;
-- (void)cleanViewAndShowTree;
-- (void)showNode:(Node *)aNode atPointValue:(NSValue *)aPointValue;
-- (void)showTree:(TrinaryTree *)aTree fromNode:(Node *)startNode atPointValue:(NSValue *)aPointValue;
-- (double)horizontalOffsetForY:(float)yCoordinate;
-@end
-
-
 @implementation TrinaryTreeViewController
-
-@synthesize trinaryTree, buttonNodeDictionary;
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
